@@ -98,7 +98,6 @@ def flipBits(text, index):
 
 def flipCounter(text, p):
 	p=random.randint(0,2**n-1)
-	print(p)
 	text=flipBits(text, p)
 	return text
 
@@ -119,7 +118,6 @@ def main(k1, k2, f1, f2):
 	# fields=["number of bits","1st","2nd"]
 	rows=[]
 	for i in range(1,33):
-		print("For value of i:",i)
 		text=flipCounter(text, i)
 		encrypted1 = encryption(k1)
 		#print("Cipher text with key1: ",encrypted1)
@@ -159,14 +157,14 @@ def main2(k1, k2, f1, f2):
 	text=k2
 	# fields=["number of bits","1st","2nd"]
 	encrypted1 = encryption(k1)
-	print(encrypted1)
+	#print(encrypted1)
 	rows=[]
 	for i in range(1,33):
 		#print("For value of i:",i)
 		text=flipCounter(text, i)
 		encrypted2 = encryption(text)
 		#print("Cipher text with key1: ",encrypted1)
-		print(encrypted2)
+		#print(encrypted2)
 		
 		#print("Cipher text with key2: ",encrypted2)
 		xored = []
@@ -186,7 +184,7 @@ def main2(k1, k2, f1, f2):
 		# print(zero)
 		# print(one)
 
-		print("With ",i,"bits flipped: ",round(one*100/(zero+one),2)," with Randomness: ",round(R,4)," Standard Deviation: ", stdDev)
+		#print("With ",i,"bits flipped: ",round(one*100/(zero+one),2)," with Randomness: ",round(R,4)," Standard Deviation: ", stdDev)
 		t=round(one*100/(zero+one),2)
 		rows.append(t)
 	
@@ -214,8 +212,8 @@ Declarartion of all usefull variables and calling main.
 data=open("keys.txt",'r').readlines()
 plain_text=data[0].rstrip()
 k1=data[1].rstrip()
-n = 5
-b1 = 3
+n = 11
+b1 = 7
 plain_text=plain_text[0:(2**b1)]*(2**(n-b1))
 k1=k1[0:(2**b1)]*(2**(n-b1))
 
@@ -226,9 +224,9 @@ k2=k1
 b=8
 f1="graph.csv"
 f2="graph2.csv"
-#main(k1,k2,f1,f2)
-for j in range(1):
+main(k1,k2,f1,f2)
+for j in range(30):
 	f1, f2= f2, f1
-	#print("Interation: ",j+1)
+	print("Interation: ",j+1)
 	main2(k1, k2, f1, f2)
 	
